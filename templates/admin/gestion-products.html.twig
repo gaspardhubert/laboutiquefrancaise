@@ -1,0 +1,40 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Gestion des produits{% endblock %}
+
+{% block content %}
+<table class="table text-center ">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">catégorie</th>
+        <th scope="col">titre</th>
+        <th scope="col">illustration</th>
+        <th scope="col">description</th>
+        <th scope="col">photo</th>
+        <th scope="col">prix</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody><br>
+  <button type="button" class="btn btn-success"><a href="{{ path('admin_ajout_product') }}">Ajouter un produit </button></a>
+
+        {% for product in products %}       
+            <tr>
+                <td>{{ product.id }}</td>
+                <td>{{ product.category.name }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.illustration }}</td>
+                <td>{{ product.description | slice(0, 50) }}</td>
+                <td><img class="img-thumbnail" src="{{ asset('photosProducts/' ~ product.illustration) }}"></td>
+                <td>{{ product.price|number_format(2) }}</td>
+                <td>
+                    <a href="{{ path('admin_details_product', {id: product.id} ) }}">show</a> 
+                    <a href="{{ path('admin_update_product', {id: product.id}) }}" >update</a>
+                    <a href="{{ path('admin_delete_product', {id: product.id}) }}" onclick= "return confirm('Êtes vous sûr de vouloir supprimer le produit ?')">delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

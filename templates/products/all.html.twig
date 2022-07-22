@@ -1,0 +1,42 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}{{ parent() }} Librairie{% endblock %}
+
+{% block content %}
+<div class="text-center mb-5"><br>
+    <h4>Liste des livres</h4>
+</div>
+<div class="row mt-5">
+    <div class="col-md-2 justify-content-center pt-4">
+      <ul class="list-group">
+        {% for category in categories %}
+            <a class="text-decoration-none" href="{{ path('products_category', {id: category.id}) }}"><li class="list-group-item btn btn-primary text-center">{{ category.name }}</li></a>
+        {% endfor %}
+       </ul>
+</div>
+<div class="col m-d-10 justify-content-center">
+    {% for product in products %} 
+    <div class="row col-md-8 justify-content-center">
+        <div class="col card mb-3 " style="max-width: 800px;">
+            <div class="row g-0">
+                <div class="col-md-6 justify-content-center">
+                    <img src="{{ asset('photosProducts/' ~ product.illustration) }}" class="img-fluid rounded-start"
+                        alt="{{ product.name }}">
+                </div>
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <h4 class="card-title"><a href="{{ path('product_show', {id: product.id}) }}">{{product.name}}</a></h4>
+                        <h6>{{product.description}}</h6>
+                        <h6>category : {{ product.category.name }}</h5>
+                        <h5>prix : <strong>{{ product.price|number_format(2) }} €</strong></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>   
+    {% endfor %}
+</div>
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,20 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    Détails du produit {{product.name }}
+{% endblock %}
+
+{% block content %}<br>
+<div class="row"
+    <div class="col-md-8 col-lg-sm-12">
+        <h1> Détail du produit n° {{ product.id }}</h1>
+        <h5><strong>titre : </strong> {{ product.name}}</h5>
+        <h5><strong>prix : </strong> {{ product.price|number_format(2) }} €</h5>
+        <h5><strong>catégorie : </strong> {{ product.category }}</h5>
+        <p><strong>description : </strong> {{ product.description }}</p>
+    </div>
+    <div class=>
+        <img src="{{ asset('photosProducts/' ~ product.illustration) }}" alt="{{ product.name }}"
+    </div>
+</div>
+{% endblock %}

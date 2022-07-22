@@ -1,0 +1,31 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}{{ parent() }} Librairie{% endblock %}
+
+{% block content %}
+<div class="text-center mb-5"><br>
+    <h2>Bienvenue à la librairie Égrégore livres</h2>
+    <h4>Voici quelques-unes de nos publications :</h4>
+</div>
+<div class="justify-content-center">
+    {% for product in products %} 
+        <div class="card mb-3 container" style="max-width: 500px;">
+            <div class="row g-0">
+                <div class="col-md-6 justify-content-center">
+                    <img src="{{ asset('photosProducts/' ~ product.illustration) }}" class="img-fluid rounded-start"
+                        alt="{{ product.name }}">
+                </div>
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <h4 class="card-title"><a class="text-decoration-none text-success" href="{{ path('product_show', {id: product.id}) }}">{{product.name}}</a></h4>
+                        <h6>Prix : <strong>{{ product.price|number_format(2) }} €</strong></h6>
+                        <h6>Description: <strong>{{ product.description }}</strong></h6>
+                    </div>
+                </div>
+            </div>
+        </div>  
+    {% endfor %}
+</div>
+
+{% endblock %}
+
