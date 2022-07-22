@@ -6,6 +6,7 @@ use DateTimeInterface;
 use App\Entity\Product;
 use App\Entity\Category;
 use App\Entity\CommandeDetail;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ProductRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -48,13 +49,12 @@ class Product
     #[ORM\Column(type: 'datetime', nullable: true)]
     private $dateDeSortie;
 
-    /**
-     * @ORM\OneToMany(targetEntity=CommandeDetail::class, mappedBy="product", orphanRemoval=true)
-     */
-    private $commandeDetails;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $illustration;
+
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: CommandeDetail::class, orphanRemoval: true)]
+    private $commandeDetails;
 
 
     public function __construct()
@@ -139,8 +139,21 @@ class Product
         return $this;
     }
 
+
+    public function getIllustration(): ?string
+    {
+        return $this->illustration;
+    }
+
+    public function setIllustration(?string $illustration): self
+    {
+        $this->illustration = $illustration;
+
+        return $this;
+    }
+
     /**
-     * @return Collection<string, CommandeDetail>
+     * @return Collection<int, CommandeDetail>
      */
     public function getCommandeDetails(): Collection
     {
@@ -165,18 +178,6 @@ class Product
                 $commandeDetail->setProduct(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getIllustration(): ?string
-    {
-        return $this->illustration;
-    }
-
-    public function setIllustration(?string $illustration): self
-    {
-        $this->illustration = $illustration;
 
         return $this;
     }
