@@ -7,9 +7,7 @@ use App\Entity\Product;
 use App\Entity\Category;
 use App\Entity\CommandeDetail;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Genres\Genre;
 use App\Repository\ProductRepository;
-use Doctrine\Common\Genres\ArrayGenre;
 use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
@@ -142,9 +140,9 @@ class Product
     }
 
     /**
-     * @return Genre<string, CommandeDetail>
+     * @return Collection<string, CommandeDetail>
      */
-    public function getCommandeDetails(): Genre
+    public function getCommandeDetails(): Collection
     {
         return $this->commandeDetails;
     }
