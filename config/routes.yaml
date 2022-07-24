@@ -5,3 +5,9 @@ controllers:
 dashboard:
     path: /admin
     controller: App\Controller\Admin\DashboardController::index
+
+    # app_cgv:
+    # path: /cgv
+    # controller: Symfony\Bundle\FrameworkerBundle\Controller\TemplateController
+    # defaults:
+      # template: 'statique/cgv.html.twig'

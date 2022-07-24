@@ -2,9 +2,11 @@
 
 namespace App\Form;
 
+use App\Form\AdminType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 class AdminType extends AbstractType
@@ -13,7 +15,7 @@ class AdminType extends AbstractType
     {
         $builder
             ->add('secret', PasswordType::class)
-            ->add('confirmer', SubmitTyp::class)
+            ->add('confirmer', SubmitType::class)
         ;
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use LogicException;
 use App\Form\AdminType;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,7 +31,7 @@ class SecurityController extends AbstractController
     #[Route(path: '/logout', name: 'app_logout')]
     public function logout(): void
     {
-        throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+        throw new LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 
     /**
@@ -39,7 +40,7 @@ class SecurityController extends AbstractController
 
      public function passerEnAdmin( $id, UserRepository $repo, Request $request )
      {
-        $secret = "123456";
+        $secret = "mangue";
 
         $form = $this->createForm(AdminType::class);
         $form->handleRequest($request);
@@ -52,9 +53,8 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute("app_home");
         }
 
-        if($form->isSubmit() && $form->isValid())
+        if($form->isSubmitted() && $form->isValid())
         {
-
             // si la saisie dans le champ "secret" du formulaire correspond au mdp stocké dans la variable $secret
             if($form->get('secret')->getData() == $secret) {
 
@@ -62,7 +62,6 @@ class SecurityController extends AbstractController
             }else{
                $this->addFlash("error", "Vous n'avez pas les droits pour affecter cette action, veuillez contacter l'administrateur du site !"); 
             }
-
             // en passant par la méthode add du repository, l'objet sera parsisté et envoyé en bdd grâce au paramètre 1 (true)
             $repo->add($user, 1);
 

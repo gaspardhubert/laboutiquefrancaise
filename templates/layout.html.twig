@@ -52,22 +52,18 @@
         </div>
     </nav>
 </header>
-
 <main class="container mb-5 mt-5">
 <br>
   {% for message in app.flashes('error') %}
       <div class="alert alert-danger text-center"
           {{ message }}
   {% endfor %}
-
   {% for message in app.flashes('error') %}
       <div class="alert alert-success text-center"
           {{ message }}
   {% endfor %}
-
   {% block content %}{% endblock %}
 </main>
-
 <footer class="footer-custom">
         <p>&copy; 2017-2022 Égrégore livres<br>
         <mall>Des ouvrages engagés, des livres déroutants, des bouquins dépaysants.<br>
