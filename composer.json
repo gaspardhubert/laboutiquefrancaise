@@ -108,6 +108,11 @@
             "php bin/console doctrine:fixtures:load --no-interaction --env=PROD"
         ]
     },
+    "engines": {
+        "node": "v16.6.*",
+        "npm": "7.20.*"
+    },
+
     "conflict": {
         "symfony/symfony": "*"
     },
