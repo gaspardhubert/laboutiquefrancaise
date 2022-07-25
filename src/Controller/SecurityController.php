@@ -69,7 +69,7 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute("app_home");
         }
 
-        return $this->render("security/passerEnAdmin1.html.twig", [
+        return $this->render("security/passerEnAdmin.html.twig", [
             "user" => $user,
             "formAdmin" => $form->createView()
         ]);
